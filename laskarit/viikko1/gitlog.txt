@@ -1,0 +1,104 @@
+commit aac4cfd75880c60529857b2b03441f2bdcc90155
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Tue Mar 22 22:15:25 2022 +0200
+
+    tehtävä11
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit d8e63c2a7de6abf65917b3291b328eb6bf92bdff
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Tue Mar 22 22:03:27 2022 +0200
+
+    luotu file1, 2 & 3
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7981e462f2409acada8897b5c3aa8d52b4c72d58
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Tue Mar 22 21:45:11 2022 +0200
+
+    tehtävä 9:
+
+ eka.txt    | 10 +++++-----
+ kolmas.txt |  3 ++-
+ 2 files changed, 7 insertions(+), 6 deletions(-)
+
+commit d646a6215a7eb7a5a6aef268b92c33c1bdc4abdc
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Tue Mar 22 21:42:36 2022 +0200
+
+    tehtävä 8: uudelleenimetty
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8ea24d767056109bde7666cac4a6e02c28a585e3
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Tue Mar 22 21:40:58 2022 +0200
+
+    tehtävä 8: poista toinen
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 1336c6496f76b16788b7a9d793acc2bab7f9fb08
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Tue Mar 22 21:37:57 2022 +0200
+
+    tehtävä 7
+
+ tiedosto.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 2982df7cc9fa31c19f13ac1e80e105ceaeb5e469
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Sun Mar 20 20:46:27 2022 +0200
+
+    uusi hakemisto
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2374e6aaaccaf5dc3012343ccd0968d1048970a3
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Sun Mar 20 20:42:50 2022 +0200
+
+    kaksi muokkausta
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 36c1e720717a7733e92f19a221469b414eedfaed
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Sun Mar 20 20:40:00 2022 +0200
+
+    lisäytty kolmas.txt
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7e1a0325d5ef2d90d7b9d77800ac29c0582db746
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Sun Mar 20 20:36:59 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 517aba167d43672c0edb68c1fbc474bf47abf954
+Author: Elias Toukolehto <elias.toukolehto@helsinki.fi>
+Date:   Sun Mar 20 20:29:38 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
