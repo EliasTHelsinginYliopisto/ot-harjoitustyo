@@ -6,3 +6,8 @@ joten tämä harjoitustehtävä oli hyödyllinen
 
 [gitlog.txt](laskarit/viiko1/gitlog.txt)  
 [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
+
+ostoslista:  
+1. kahvia  
+2. munia  
+3. tomaatteja  
