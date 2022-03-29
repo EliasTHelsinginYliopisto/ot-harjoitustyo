@@ -2,10 +2,10 @@
 ## Sovelluksen kuvaus
 miinaharava on peli jossa pelaajan on tarkoitus "haravoida" lautaa ja selvittää missä miinat sijaitsevat ilman että pelaaja räjäyttää itsensä  
 
-##Käyttäjät
+##Käyttäjät  
 Sovelluksella ei ole kirjautumista, sovellus kuitenkin tallettaa pelin tulokset,joihin voi yhdistää nimimerkin  
 
-##Käyttöliittymäluonnos
+##Käyttöliittymäluonnos  
 [Luonnos](/Projekti_miinaharava/Kuvaus.png)  
 aloitussivulta voi aloittaa uuden pelin, siirtyä katsomaan huipputuloksia, tai määrittää pelin asetuksia, pelisivulla pyörii pelin logiikka, ja pelin päätyttyä näytetään huipputulokset, sekä tallennetaan uudet  
 
