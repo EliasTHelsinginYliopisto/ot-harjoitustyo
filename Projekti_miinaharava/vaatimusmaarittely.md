@@ -6,7 +6,7 @@ miinaharava on peli jossa pelaajan on tarkoitus "haravoida" lautaa ja selvittä�
 Sovelluksella ei ole kirjautumista, sovellus kuitenkin tallettaa pelin tulokset,joihin voi yhdistää nimimerkin  
 
 ## Käyttöliittymäluonnos  
-[Luonnos](/Projekti_miinaharava/Kuvaus.png)   
+![Luonnos](/Projekti_miinaharava/Kuvaus.png)   
 aloitussivulta voi aloittaa uuden pelin, siirtyä katsomaan huipputuloksia, tai määrittää pelin asetuksia, pelisivulla pyörii pelin logiikka, ja pelin päätyttyä näytetään huipputulokset, sekä tallennetaan uudet  
 
 ## Perusversion toiminnot
