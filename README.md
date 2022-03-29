@@ -7,5 +7,5 @@
 [gitlog.txt](laskarit/viiko1/gitlog.txt)  
 [komentorivi.txt](laskarit/viikko1/komentorivi.txt)
 ### Viikko 2
-[Testikattavuusraportti](laskarit/viikko2/"Screenshot from 2022-03-29 17-54-10.png")  
+[Testikattavuusraportti](laskarit/viikko2/Screenshot%20from%202022-03-29%2017-54-10.png)  
 
