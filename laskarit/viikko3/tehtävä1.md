@@ -37,4 +37,3 @@ classDiagram
     Pelilauta "1" -- "2" Noppa
     Pelaaja "1" ..> "2" Noppa
 ```
-![Kuva](/laskarit/viikko3/t1kuva.png)

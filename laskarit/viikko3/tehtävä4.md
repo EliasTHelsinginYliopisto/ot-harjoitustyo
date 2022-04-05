@@ -27,4 +27,3 @@ sequenceDiagram
     kallen_kortti -->> bussi244: 1.5
     bussi244 -->>- Main: False
 ```
-![Kuva](laskarit/viikko3/t4kuva.png)

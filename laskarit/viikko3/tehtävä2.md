@@ -81,4 +81,3 @@ classDiagram
     Sattuma_Tai_Yhteismaa -- "usea" Kortti
     Kortti"0..*" o--o "1"Pelaaja
 ```
-![kuva](laskarit/viikko3/t2kuva.png)

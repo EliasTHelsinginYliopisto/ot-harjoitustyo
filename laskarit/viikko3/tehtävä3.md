@@ -18,4 +18,3 @@ sequenceDiagram
     Engine -->>- Machine: 
     Machine -->>- Main: 
 ```
-![Kuva](laskarit/viikko3/t3kuva.png)
