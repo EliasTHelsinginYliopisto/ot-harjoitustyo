@@ -1,4 +1,5 @@
 #Työaikakirjanpito
 | Päivä | Tunnit | Mitä tehtyä |
 | :----:| :----- | :---------- |
-| TBA   | 0      | |
+| 5.4   | 3      | Pygamen käytön harjoittelua|
+|       |        | |
