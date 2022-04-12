@@ -1,1 +1,9 @@
--
+# Changelog
+
+## Viikko 4
+
+- Sovellus avaa menun
+- Lisätty MainMenu-luokka joka määrittelee sovelluksen menun
+- Lisätty GameTheme-luokka joka määrittää sovelluksen ulkonäön
+- Lisätty Miinaharava-luokka joka kutsuu muita luokkia
+- Testattu että menu käynnistyy
