@@ -5,10 +5,10 @@ Sovellus klassinen tietokonepeli Miinaharava. Käyttäjä voi pelata sovelluksel
 
 
 ## Dokumentaatio:  
-[vaatimusmäärittely](Projekti_miinaharava/Dokumentaatio/vaatimusmaarittely.md)  
-[työaikakirjanpito](Projekti_miinaharava/Dokumentaatio/tyoaikakirjanpito.md)
-[arkkitehtuurikuvaus](Projekti_miinaharava/Dokumentaatio/arkkitehtuurikuvaus.md)  
-[changelog](changelog.md)  
+- [vaatimusmäärittely](Projekti_miinaharava/Dokumentaatio/vaatimusmaarittely.md)  
+- [työaikakirjanpito](Projekti_miinaharava/Dokumentaatio/tyoaikakirjanpito.md)  
+- [arkkitehtuurikuvaus](Projekti_miinaharava/Dokumentaatio/arkkitehtuurikuvaus.md)   
+- [changelog](changelog.md)  
 
 ## Komentorivitoiminnot:
 
