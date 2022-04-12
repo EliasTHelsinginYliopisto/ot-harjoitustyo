@@ -27,3 +27,7 @@ Sovellus klassinen tietokonepeli Miinaharava. Käyttäjä voi pelata sovelluksel
 
     poetry run invoke coverage-report
 Testikattavuus luodaan htmlcov hakemistoon
+
+### Pylint
+
+    poetry run invoke lint

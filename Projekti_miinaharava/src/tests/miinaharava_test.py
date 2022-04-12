@@ -1,6 +1,7 @@
 import unittest
 from miinaharava import Miinaharava
 
+
 class TestMiinaharava(unittest.TestCase):
     def setUp(self):
         self.game = Miinaharava()
