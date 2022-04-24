@@ -7,3 +7,7 @@
 - Lisätty GameTheme-luokka joka määrittää sovelluksen ulkonäön
 - Lisätty Miinaharava-luokka joka kutsuu muita luokkia
 - Testattu että menu käynnistyy
+
+## Viikko 5
+
+- Lisätty GameLogic luokka joka suorittaa peliä määritetyilä asetuksilla

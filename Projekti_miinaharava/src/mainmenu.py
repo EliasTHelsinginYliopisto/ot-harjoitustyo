@@ -26,10 +26,7 @@ class MainMenu:
         self.settingsactive = [False, False]
 
         # Pygame display
-        window_size_x = 720
-        window_size_y = 480
-        self.window = pygame.display.set_mode(
-            (window_size_x, window_size_y))
+        self.window = None
 
     # Pylint says this function is highly problematic
     def events(self):
@@ -37,12 +34,14 @@ class MainMenu:
 
             if event.type == pygame.QUIT:
                 self.running = False
-                pygame.quit()
+                return 'quit_game'
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 if self.buttons[1].rect.collidepoint(mouse_pos):
-                    pygame.quit()
+                    pygame.display.quit()
+                elif self.buttons[0].rect.collidepoint(mouse_pos):
+                    return "start_game"
                 elif self.input_rects[0].rect.collidepoint(mouse_pos):
                     self.settingsactive = [True, False]
                 elif self.input_rects[1].rect.collidepoint(mouse_pos):
@@ -71,6 +70,9 @@ class MainMenu:
         titlemarginal = 20
         buttonmarginal = 140
         window_size_x = 720
+        window_size_y = 480
+        self.window = pygame.display.set_mode(
+            (window_size_x, window_size_y))
 
         self.running = True
 
@@ -101,7 +103,13 @@ class MainMenu:
                 quit_text, (2*window_size_x/3-40, buttonmarginal+10))
 
             self.input_boxes()
-            self.events()
+
+            status = self.events()
+            if status == "start_game":
+                return self.inputs
+            elif status == 'quit_game':
+                return status
+
             self.clock.tick(60)
             pygame.display.update()
 
