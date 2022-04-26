@@ -23,12 +23,18 @@ Palaa menuun BACKSPACE-näppäimellä ja sule peli klikkaamalla 'Lopeta'
 Lataa uusin julkaisu
 - [Release 1](https://github.com/EliasTHelsinginYliopisto/ot-harjoitustyo/releases/tag/v0.0.1)
 
-1.
-    poetry install
-2.
-    poetry run invoke build
-3.
-    poetry run invoke start
+1. 
+```bash
+poetry install
+```
+2.  
+```bash
+poetry run invoke build
+```
+3.  
+```bash
+poetry run invoke start
+```
 
 ### Käynnistys
 
