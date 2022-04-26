@@ -20,8 +20,15 @@ Palaa menuun BACKSPACE-näppäimellä ja sule peli klikkaamalla 'Lopeta'
 ## Komentorivitoiminnot:
 
 ### Asennus
+Lataa uusin julkaisu
+- [Release 1](https://github.com/EliasTHelsinginYliopisto/ot-harjoitustyo/releases/tag/v0.0.1)
 
+1.
     poetry install
+2.
+    poetry run invoke build
+3.
+    poetry run invoke start
 
 ### Käynnistys
 
