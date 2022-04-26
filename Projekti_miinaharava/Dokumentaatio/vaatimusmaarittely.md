@@ -10,9 +10,9 @@ Sovelluksella ei ole kirjautumista, sovellus kuitenkin tallettaa pelin tulokset,
 aloitussivulta voi aloittaa uuden pelin, siirtyä katsomaan huipputuloksia, tai määrittää pelin asetuksia, pelisivulla pyörii pelin logiikka, ja pelin päätyttyä näytetään huipputulokset, sekä tallennetaan uudet  
 
 ## Perusversion toiminnot
-- Käyttäjä voi määrittää kuinka suurella kentällä haluaa pelata ja kuinka monella miinalla
-- Käyttäjä voi pelissä liputtaa miinoja ja aukaista ruutuja
-- Peli laskee käyttäjän pisteet vaikeustason mukaan
+- Käyttäjä voi määrittää kuinka suurella kentällä haluaa pelata ja kuinka monella miinalla | Tehty
+- Käyttäjä voi pelissä liputtaa miinoja ja aukaista ruutuja | Osittain tehty, liput eivät vielä käytössä
+- Peli laskee käyttäjän pisteet vaikeustason mukaan | Tehty
 - Käyttäjä voi pelin päätyttyä tallettaa tuloksen ja katsoa hupputuloksia
 
 ## Madollisia jatkokehityksiä

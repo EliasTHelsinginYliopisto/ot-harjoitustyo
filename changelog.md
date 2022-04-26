@@ -10,4 +10,6 @@
 
 ## Viikko 5
 
-- Lisätty GameLogic luokka joka suorittaa peliä määritetyilä asetuksilla
+- Lisätty GameLogic-luokka joka suorittaa peliä määritetyilä asetuksilla
+- Peli on nyt pelattavissa. lippuja ei voi vielä käyttää eikä peli pääty
+- Testattu että peli käyttää annettuja asetuksia

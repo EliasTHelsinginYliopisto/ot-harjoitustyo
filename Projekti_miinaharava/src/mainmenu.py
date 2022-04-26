@@ -18,8 +18,8 @@ class MainMenu:
         self.running = False
 
         # menu entities
-        self.buttons = [None, None, None] # Start, Quit, Leaderboards
-        self.input_rects = [None, None] # Size, Mines
+        self.buttons = [None, None, None]  # Start, Quit, Leaderboards
+        self.input_rects = [None, None]  # Size, Mines
         self.inputs = [str(''), str('')]
 
         # State of setting inputboxes 0 = size, 1 = mines.
@@ -62,7 +62,6 @@ class MainMenu:
                     elif self.settingsactive[1]:
                         self.inputs[1] = self.inputs[1][:-1]
 
-
     def run(self):
         # To have less instance attributes there's some repetition.
         # maybe fix by creating new classes for different entities
@@ -88,7 +87,7 @@ class MainMenu:
 
             # Start Button
             self.buttons[0] = Button(window_size_x/3-50, buttonmarginal,
-                   buttonsize, self.window, self._theme.button_colour)
+                                     buttonsize, self.window, self._theme.button_colour)
             start_text = self._theme.text_font.render(
                 'Aloita', True, self._theme.text_colour)
             self.window.blit(
@@ -96,7 +95,7 @@ class MainMenu:
 
             # Quit Button
             self.buttons[1] = Button(2*window_size_x/3-50, buttonmarginal,
-                   buttonsize, self.window, self._theme.button_colour)
+                                     buttonsize, self.window, self._theme.button_colour)
             quit_text = self._theme.text_font.render(
                 'Poistu', True, self._theme.text_colour)
             self.window.blit(
@@ -107,7 +106,7 @@ class MainMenu:
             status = self.events()
             if status == "start_game":
                 return self.inputs
-            elif status == 'quit_game':
+            if status == 'quit_game':
                 return status
 
             self.clock.tick(60)
@@ -121,11 +120,14 @@ class MainMenu:
         settingsmarginal = 240
         sizeset_text = self._theme.text_font.render(
             'Koko:', True, self._theme.text_colour)
-        self.window.blit(sizeset_text, (window_size_x/3-100, settingsmarginal+10))
+        self.window.blit(
+            sizeset_text, (window_size_x/3-100, settingsmarginal+10))
         self.input_rects[0] = Button(window_size_x/3+10, settingsmarginal+10,
-                              buttonsize, self.window, self._theme.button_colour)
-        sizes_input = self._theme.text_font.render(self.inputs[0], True, self._theme.text_colour)
-        self.window.blit(sizes_input, (window_size_x/3+10, settingsmarginal+20))
+                                     buttonsize, self.window, self._theme.button_colour)
+        sizes_input = self._theme.text_font.render(
+            self.inputs[0], True, self._theme.text_colour)
+        self.window.blit(
+            sizes_input, (window_size_x/3+10, settingsmarginal+20))
 
         # Mine input
         mines_text = self._theme.text_font.render(
@@ -133,7 +135,9 @@ class MainMenu:
         self.window.blit(
             mines_text, (2*window_size_x/3-100, settingsmarginal+10))
         self.input_rects[1] = Button(2*window_size_x/3+30, settingsmarginal+10,
-                            buttonsize, self.window, self._theme.button_colour)
+                                     buttonsize, self.window, self._theme.button_colour)
 
-        mines_input = self._theme.text_font.render(self.inputs[1], True, self._theme.text_colour)
-        self.window.blit(mines_input, (2*window_size_x/3+40, settingsmarginal+20))
+        mines_input = self._theme.text_font.render(
+            self.inputs[1], True, self._theme.text_colour)
+        self.window.blit(
+            mines_input, (2*window_size_x/3+40, settingsmarginal+20))

@@ -29,7 +29,6 @@ class Miinaharava:
             self.events()
 
             if self.exit_game:
-                print("näkemiin")
                 sys.exit()
             elif self.open_menu:
                 status = self._menu.run()
@@ -37,7 +36,6 @@ class Miinaharava:
                     self.open_menu = False
                     self.start_game = True
                 elif status == 'quit_game':
-                    print('exit system..')
                     pygame.quit()
 
             elif self.start_game:
@@ -46,4 +44,3 @@ class Miinaharava:
                     self.start_game = False
 
             pygame.display.update()
-

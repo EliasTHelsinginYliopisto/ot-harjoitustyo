@@ -20,4 +20,6 @@ class GameTheme():
 
         self.text_font = pygame.font.SysFont('Arial', 40)
 
+        self.mines_font = pygame.font.SysFont('Arial', 20)
+
         self.title_font = pygame.font.SysFont('Arial', 100)
