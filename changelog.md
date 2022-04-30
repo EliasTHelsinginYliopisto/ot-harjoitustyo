@@ -13,3 +13,8 @@
 - Lisätty GameLogic-luokka joka suorittaa peliä määritetyilä asetuksilla
 - Peli on nyt pelattavissa. lippuja ei voi vielä käyttää eikä peli pääty
 - Testattu että peli käyttää annettuja asetuksia
+
+## Viikko 6
+
+- Miinoja voi nyt liputtaa
+- Peli nyt asettaa oikean määrän miinoja

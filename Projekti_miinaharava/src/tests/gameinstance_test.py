@@ -21,25 +21,10 @@ class TestMiinaharava(unittest.TestCase):
         [[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']]]
         self.assertEqual(grid1, grid2)
     
-    '''
+    
     def test_sets_correct_amount_of_mines(self):
-        self._game.gridsize = 20
-        self._game.mineamount = 100
-        self._game.minefield = self._game.create_grid()
-        start = [0, 0]
-        self._game.set_mines(start)
-
-        in_grid = 0
-        for i in self._game.minefield:
-            for j in i:
-                if j[0] == 'M':
-                    in_grid += 1
-        self.assertEqual(self._game.mineamount, in_grid)
-    '''
-
-    def test_sets_correct_a_mine(self):
-        self._game.gridsize = 5
-        self._game.mineamount = 1
+        self._game.gridsize = 10
+        self._game.mineamount = 91
         self._game.minefield = self._game.create_grid()
         start = [0, 0]
         self._game.set_mines(start)

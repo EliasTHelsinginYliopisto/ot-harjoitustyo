@@ -6,6 +6,7 @@ class DefineColours():
         self.black = (0, 0, 0)
         self.dark_grey = (96, 96, 96)
         self.light_grey = (160, 160, 160)
+        self.white = (255, 255, 255)
 
 
 class GameTheme():
@@ -17,6 +18,8 @@ class GameTheme():
         self.text_colour = self._define.dark_grey
 
         self.button_colour = self._define.light_grey
+
+        self.closed_colour = self._define.white
 
         self.text_font = pygame.font.SysFont('Arial', 40)
 

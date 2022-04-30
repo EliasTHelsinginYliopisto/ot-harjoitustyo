@@ -9,3 +9,4 @@
 | 24.4  | 5      | Lisää luokka GameLogic           |
 | 25.4  | 6      | Sovelluksen koodausta            |
 | 26.4  | 3      | Release 1 viimestely             |
+| 30.4  | 3      | Lisätty liputtaminen             |
