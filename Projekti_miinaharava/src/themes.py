@@ -2,6 +2,8 @@ import pygame
 
 
 class DefineColours():
+    """Luokka, joka määrittää värit teema luokkaa varten"""
+
     def __init__(self):
         self.black = (0, 0, 0)
         self.dark_grey = (96, 96, 96)
@@ -10,6 +12,11 @@ class DefineColours():
 
 
 class GameTheme():
+    """Luokka joka määrittää värit ja fontit peliä varten
+    
+    Attributes:
+        define: teeman värit"""
+
     def __init__(self):
         self._define = DefineColours()
 

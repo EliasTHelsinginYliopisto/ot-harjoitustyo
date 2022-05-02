@@ -5,7 +5,20 @@ from gameinstance import GameLogic
 
 
 class Miinaharava:
+    """pelin pääluokka, joka kutsuu alaluokkia
+    
+    Attributes:
+        menu: pelin päävalikko
+        game: pelin logiikka
+        open_menu: onko peli käynnissä
+        exit_game: suljetaanko sovellus
+        start_game: käynnistetäänkö peli annetuilla asetuksilla
+        running: onko sovellus käynnissä
+    """
+
+
     def __init__(self):
+        """luokan konstruktori"""
 
         self._menu = MainMenu()
         self._game = GameLogic()
@@ -15,6 +28,7 @@ class Miinaharava:
         self.running = False
 
     def events(self):
+        """Sulkee pelin"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.exit_game = True
@@ -22,6 +36,13 @@ class Miinaharava:
                 self.open_menu = True
 
     def run(self):
+        """pääluokan suoritus
+        
+        Args:
+            status:
+            luokkien palauttamat tiedot. menu palauttaa pelin asetukset,
+            pelin logiikka palauttaa palataanko menuun
+        """
         pygame.display.set_caption("Miinaharava")
         self.running = True
 

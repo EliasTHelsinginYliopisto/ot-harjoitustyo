@@ -2,6 +2,7 @@ import unittest
 import pygame
 from gameinstance import GameLogic
 
+
 class TestMiinaharava(unittest.TestCase):
     def setUp(self):
         self._game = GameLogic()
@@ -14,14 +15,16 @@ class TestMiinaharava(unittest.TestCase):
     def test_creates_grid_correctly(self):
         self._game.gridsize = 5
         grid1 = self._game.create_grid()
-        grid2 = [[[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']], 
-        [[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']], 
-        [[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']], 
-        [[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']], 
-        [[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']]]
+        grid2 = [[[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']],
+                 [[0, 'closed'], [0, 'closed'], [0, 'closed'],
+                     [0, 'closed'], [0, 'closed']],
+                 [[0, 'closed'], [0, 'closed'], [0, 'closed'],
+                     [0, 'closed'], [0, 'closed']],
+                 [[0, 'closed'], [0, 'closed'], [0, 'closed'],
+                  [0, 'closed'], [0, 'closed']],
+                 [[0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed'], [0, 'closed']]]
         self.assertEqual(grid1, grid2)
-    
-    
+
     def test_sets_correct_amount_of_mines(self):
         self._game.gridsize = 10
         self._game.mineamount = 91
@@ -40,6 +43,16 @@ class TestMiinaharava(unittest.TestCase):
         self._game.gridsize = 1
         self._game.in_progress = True
         self._game.minefield = self._game.create_grid()
+        self._game.window = pygame.display.set_mode(
+            (1000, 1000)
+        )
         self._game.reveal_square(0, 0)
 
         self.assertEqual(self._game.user_interface[2], 10)
+   
+    def test_opening_mine_ends_game(self):
+        self._game.in_progress = True
+        self._game.minefield = [[['M', 'closed'], [1, 'closed']]]
+        self._game.reveal_square(0, 0)
+
+        self.assertEqual(self._game.in_progress, False)

@@ -18,3 +18,5 @@
 
 - Miinoja voi nyt liputtaa
 - Peli nyt asettaa oikean määrän miinoja
+- Peli päättyy jos kaikki luukut on avattu tai käyttäjä avaa miinan
+- Lisätty docstring

@@ -6,30 +6,53 @@ pygame.init()
 
 
 class MainMenu:
-    def __init__(self):
+    """Luokka joka suorittaa pelin päävalikkoa
+    Attributes:
+        clock:
+            pygamen kello
+        theme:
+            Sovelluksen värit ja fontit
+        running:
+            boolean muuttuja siitä onko menu käynnissä
+        buttons:
+            Pygamen rect luokat menun napeista. 0 = Aloita,
+            1 = lopeta, 2 = tulostaulukko
+        input_rects:
+            pygamen rect luokat pelin asetuksia varten
+            0 = koko, 1 = miinat
+        self.inputs:
+            asetuksiin syötetty tieto.
+            0 = koko, 1 = miinat.
+        settingsactive:
+            Pitää muistissa mitkä tekstikentät ovat aktiivisia
+        window:
+            pygamen näyttö
+    """
 
-        # Define Clock
+    def __init__(self):
+        """Luokan konstruktori"""
+        
         self.clock = pygame.time.Clock()
 
-        # Call GameTheme Class
         self._theme = GameTheme()
 
-        # While True - menu is active
         self.running = False
 
-        # menu entities
-        self.buttons = [None, None, None]  # Start, Quit, Leaderboards
-        self.input_rects = [None, None]  # Size, Mines
+        self.buttons = [None, None, None]  
+        self.input_rects = [None, None]  
         self.inputs = [str(''), str('')]
 
-        # State of setting inputboxes 0 = size, 1 = mines.
         self.settingsactive = [False, False]
 
-        # Pygame display
         self.window = None
 
-    # Pylint says this function is highly problematic
     def events(self):
+        """Lukee käyttäjän syötteet
+
+        Returns:
+            'quit_game': jos painetaan 'lopeta'-nappia
+            'start_game': Jos painetaan 'aloita'-nappia
+        """
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
@@ -63,8 +86,15 @@ class MainMenu:
                         self.inputs[1] = self.inputs[1][:-1]
 
     def run(self):
-        # To have less instance attributes there's some repetition.
-        # maybe fix by creating new classes for different entities
+        """suorittaa päävalikkoa
+        
+        Args:
+        buttonsize: määrittää nappejen koon
+        titlemarginal: marginaali näytön yläreunasta otsikkoon
+        buttonmarginal: marginaali yläreunasta nappeihin
+        window_size_x: näytön leveys
+        window_size_y: näytön korkeus"""
+        
         buttonsize = 1.3
         titlemarginal = 20
         buttonmarginal = 140
@@ -79,13 +109,11 @@ class MainMenu:
 
             self.window.fill(self._theme.background_colour)
 
-            # Title_text
             title_text = self._theme.title_font.render(
                 'MIINAHARAVA', True, self._theme.text_colour)
             self.window.blit(
                 title_text, (titlemarginal, titlemarginal))
 
-            # Start Button
             self.buttons[0] = Button(window_size_x/3-50, buttonmarginal,
                                      buttonsize, self.window, self._theme.button_colour)
             start_text = self._theme.text_font.render(
@@ -93,7 +121,6 @@ class MainMenu:
             self.window.blit(
                 start_text, (window_size_x/3-40, buttonmarginal+10))
 
-            # Quit Button
             self.buttons[1] = Button(2*window_size_x/3-50, buttonmarginal,
                                      buttonsize, self.window, self._theme.button_colour)
             quit_text = self._theme.text_font.render(
@@ -113,11 +140,17 @@ class MainMenu:
             pygame.display.update()
 
     def input_boxes(self):
+        """sijoittaa tekstikentät näytölle
+        
+        Args:
+        buttonsize: määrittää tekstikenttien koon
+        window_size_x: näytön leveys
+        settingsmarginal: marginaali näytön yläreunasta asetuksiin"""
+
         buttonsize = 1
         window_size_x = 720
-
-        # Size input
         settingsmarginal = 240
+
         sizeset_text = self._theme.text_font.render(
             'Koko:', True, self._theme.text_colour)
         self.window.blit(
@@ -129,7 +162,6 @@ class MainMenu:
         self.window.blit(
             sizes_input, (window_size_x/3+10, settingsmarginal+20))
 
-        # Mine input
         mines_text = self._theme.text_font.render(
             'Miinat:', True, self._theme.text_colour)
         self.window.blit(
