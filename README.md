@@ -9,6 +9,7 @@ Sovellus klassinen tietokonepeli Miinaharava. Käyttäjä voi pelata sovelluksel
 - [työaikakirjanpito](Projekti_miinaharava/Dokumentaatio/tyoaikakirjanpito.md)  
 - [arkkitehtuurikuvaus](Projekti_miinaharava/Dokumentaatio/arkkitehtuurikuvaus.md)   
 - [changelog](changelog.md)  
+- [käyttöohje](Projekti_miinaharava/Dokumentaatio/kayttoohje.md)
 
 ## Sovelluksen Käyttö
 
