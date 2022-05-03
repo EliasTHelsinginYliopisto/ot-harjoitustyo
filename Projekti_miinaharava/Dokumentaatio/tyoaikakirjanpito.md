@@ -11,4 +11,5 @@
 | 26.4  | 3      | Release 1 viimestely             |
 | 30.4  | 3      | Lisätty liputtaminen             |
 | 2.5   | 4      | Lisätty docstring                |
-| yht   | 39     |  |
+| 3.5   | 2      | Release 2 viimeistely            |
+| yht   | 41     |  |

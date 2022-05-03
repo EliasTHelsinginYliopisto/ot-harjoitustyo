@@ -177,7 +177,6 @@ class GameLogic:
         self.user_interface[2] += 10
 
         content = self.minefield[line][row][0]
-        print(content)
 
         if content == 0:
 
@@ -191,6 +190,7 @@ class GameLogic:
         if content == 'M':
             self.user_interface[2] -= 10
             self.end_game()
+            return
 
         text = self._theme.mines_font.render(
             str(content), True, self._theme.text_colour
