@@ -22,7 +22,7 @@ Palaa menuun BACKSPACE-näppäimellä ja sule peli klikkaamalla 'Lopeta'
 
 ### Asennus
 Lataa uusin julkaisu
-- [Release 2](https://github.com/EliasTHelsinginYliopisto/ot-harjoitustyo/releases/tag/v0.0.2)
+- [Release 2](https://github.com/EliasTHelsinginYliopisto/ot-harjoitustyo/releases/tag/v1.0.0)
 
 1. 
 ```bash
