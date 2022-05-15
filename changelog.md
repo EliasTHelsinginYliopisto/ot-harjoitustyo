@@ -20,3 +20,7 @@
 - Peli nyt asettaa oikean määrän miinoja
 - Peli päättyy jos kaikki luukut on avattu tai käyttäjä avaa miinan
 - Lisätty docstring
+
+## Loppupalautus
+
+- Korjattu bugi joka esti pelin aloittamisen oikeasta yläkulmasta

@@ -14,9 +14,9 @@ aloitussivulta voi aloittaa uuden pelin, siirtyä katsomaan huipputuloksia, tai 
 - &#9745; Käyttäjä voi määrittää kuinka suurella kentällä haluaa pelata ja kuinka monella miinalla 
 - &#9745; Käyttäjä voi pelissä liputtaa miinoja ja aukaista ruutuja
 - &#9745; Peli laskee käyttäjän pisteet vaikeustason mukaan
-- &#9744; Käyttäjä voi pelin päätyttyä tallettaa tuloksen ja katsoa hupputuloksia
 
 
 ## Madollisia jatkokehityksiä
+- &#9744; Käyttäjä voi pelin päätyttyä tallettaa tuloksen ja katsoa hupputuloksia
 - &#9744; graafisia profiileja 
 - &#9744; eri pelimuotoja (ajoitettu etc.)

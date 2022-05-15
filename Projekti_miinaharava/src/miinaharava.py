@@ -6,7 +6,7 @@ from gameinstance import GameLogic
 
 class Miinaharava:
     """pelin pääluokka, joka kutsuu alaluokkia
-    
+
     Attributes:
         menu: pelin päävalikko
         game: pelin logiikka
@@ -37,7 +37,7 @@ class Miinaharava:
 
     def run(self):
         """pääluokan suoritus
-        
+
         Args:
             status:
             luokkien palauttamat tiedot. menu palauttaa pelin asetukset,

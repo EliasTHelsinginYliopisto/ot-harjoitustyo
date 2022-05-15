@@ -1,6 +1,7 @@
+import sys
 import pygame
 from themes import GameTheme
-from buttons import Button
+
 
 pygame.init()
 
@@ -31,15 +32,15 @@ class MainMenu:
 
     def __init__(self):
         """Luokan konstruktori"""
-        
+
         self.clock = pygame.time.Clock()
 
         self._theme = GameTheme()
 
         self.running = False
 
-        self.buttons = [None, None, None]  
-        self.input_rects = [None, None]  
+        self.buttons = [None, None, None]
+        self.input_rects = [None, None]
         self.inputs = [str(''), str('')]
 
         self.settingsactive = [False, False]
@@ -56,8 +57,8 @@ class MainMenu:
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
-                self.running = False
-                return 'quit_game'
+                pygame.quit()
+                sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
@@ -73,31 +74,33 @@ class MainMenu:
                     self.settingsactive = [False, False]
 
             if event.type == pygame.KEYDOWN:
-                num09 = "1234567890"
-                if event.unicode in num09:
-                    if self.settingsactive[0] and len(self.inputs[0]) < 4:
-                        self.inputs[0] += event.unicode
-                    elif self.settingsactive[1] and len(self.inputs[1]) < 4:
-                        self.inputs[1] += event.unicode
-                if event.key == pygame.K_BACKSPACE:
-                    if self.settingsactive[0]:
-                        self.inputs[0] = self.inputs[0][:-1]
-                    elif self.settingsactive[1]:
-                        self.inputs[1] = self.inputs[1][:-1]
+                unicode = event.unicode
+                key = event.key
+                self.inputs_edit(unicode, key)
+        return 'continue'
+
+    def inputs_edit(self, unicode, key):
+        """Muokkaa asetuksien tietoja annetun syötteen mukaan"""
+
+        num09 = "1234567890"
+        if unicode in num09:
+            if self.settingsactive[0] and len(self.inputs[0]) < 4:
+                self.inputs[0] += unicode
+            elif self.settingsactive[1] and len(self.inputs[1]) < 4:
+                self.inputs[1] += unicode
+        if key == pygame.K_BACKSPACE:
+            if self.settingsactive[0]:
+                self.inputs[0] = self.inputs[0][:-1]
+            elif self.settingsactive[1]:
+                self.inputs[1] = self.inputs[1][:-1]
 
     def run(self):
         """suorittaa päävalikkoa
-        
+
         Args:
-        buttonsize: määrittää nappejen koon
-        titlemarginal: marginaali näytön yläreunasta otsikkoon
-        buttonmarginal: marginaali yläreunasta nappeihin
         window_size_x: näytön leveys
         window_size_y: näytön korkeus"""
-        
-        buttonsize = 1.3
-        titlemarginal = 20
-        buttonmarginal = 140
+
         window_size_x = 720
         window_size_y = 480
         self.window = pygame.display.set_mode(
@@ -108,26 +111,7 @@ class MainMenu:
         while self.running:
 
             self.window.fill(self._theme.background_colour)
-
-            title_text = self._theme.title_font.render(
-                'MIINAHARAVA', True, self._theme.text_colour)
-            self.window.blit(
-                title_text, (titlemarginal, titlemarginal))
-
-            self.buttons[0] = Button(window_size_x/3-50, buttonmarginal,
-                                     buttonsize, self.window, self._theme.button_colour)
-            start_text = self._theme.text_font.render(
-                'Aloita', True, self._theme.text_colour)
-            self.window.blit(
-                start_text, (window_size_x/3-40, buttonmarginal+10))
-
-            self.buttons[1] = Button(2*window_size_x/3-50, buttonmarginal,
-                                     buttonsize, self.window, self._theme.button_colour)
-            quit_text = self._theme.text_font.render(
-                'Poistu', True, self._theme.text_colour)
-            self.window.blit(
-                quit_text, (2*window_size_x/3-40, buttonmarginal+10))
-
+            self.draw_menu_elements()
             self.input_boxes()
 
             status = self.events()
@@ -139,9 +123,42 @@ class MainMenu:
             self.clock.tick(60)
             pygame.display.update()
 
+    def draw_menu_elements(self):
+        """piirtää menutekstin ja napit
+
+        Args:
+        buttonsize: määrittää nappejen koon
+        titlemarginal: marginaali näytön yläreunasta otsikkoon
+        buttonmarginal: marginaali yläreunasta nappeihin
+        window_size_x: näytön leveys
+        """
+
+        buttonsize = 1.3
+        titlemarginal = 20
+        buttonmarginal = 140
+        window_size_x = 720
+        title_text = self._theme.title_font.render(
+            'MIINAHARAVA', True, self._theme.text_colour)
+        self.window.blit(
+            title_text, (titlemarginal, titlemarginal))
+
+        self.buttons[0] = Button(window_size_x/3-50, buttonmarginal,
+                                 buttonsize, self.window, self._theme.button_colour)
+        start_text = self._theme.text_font.render(
+            'Aloita', True, self._theme.text_colour)
+        self.window.blit(
+            start_text, (window_size_x/3-40, buttonmarginal+10))
+
+        self.buttons[1] = Button(2*window_size_x/3-50, buttonmarginal,
+                                 buttonsize, self.window, self._theme.button_colour)
+        quit_text = self._theme.text_font.render(
+            'Poistu', True, self._theme.text_colour)
+        self.window.blit(
+            quit_text, (2*window_size_x/3-40, buttonmarginal+10))
+
     def input_boxes(self):
         """sijoittaa tekstikentät näytölle
-        
+
         Args:
         buttonsize: määrittää tekstikenttien koon
         window_size_x: näytön leveys
@@ -173,3 +190,11 @@ class MainMenu:
             self.inputs[1], True, self._theme.text_colour)
         self.window.blit(
             mines_input, (2*window_size_x/3+40, settingsmarginal+20))
+
+
+class Button():
+    """Luokka, jonka avulla lisätään nappeja menuun
+    """
+    def __init__(self, x_coord, y_coord, size, surface, colour):
+        self.rect = pygame.draw.rect(
+            surface, colour, pygame.Rect((x_coord, y_coord), (100*size, 50*size)))

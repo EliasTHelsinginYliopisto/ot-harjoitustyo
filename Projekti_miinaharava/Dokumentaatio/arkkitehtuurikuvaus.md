@@ -12,9 +12,6 @@ classDiagram
     MainMenu ..> GameTheme
     Miinaharava --> GameLogic
     GameLogic ..> GameTheme
-    TulevaLuokka_tulostaulu ..> GameTheme
-    TulevaLuokka_tulostaulu ..> TulevaTietokanta_Huipputulokset
-    Miinaharava --> TulevaLuokka_tulostaulu
 ```
 
 ## Sekvenssikaaviot
@@ -22,13 +19,12 @@ classDiagram
 ### Sekvenssikaavio yksittäisen pelin kulusta
 ```mermaid
 sequenceDiagram
-participant Miinaharava
-participant _menu
-Miinaharava->>_menu: _menu.run()
-_menu-->> Miinaharava:settings
-Miinaharava->>_game:  _game.run(settings) 
-
-_game-->>Miinaharava: 'show_leaderboards'
-Miinaharava->>_leaderboard(todo):  _leaderboard.run (todo)
+    participant Miinaharava
+    participant _menu
+    Miinaharava->>_menu: _menu.run()
+    _menu-->> Miinaharava:settings
+    Miinaharava->>_game:  _game.run(settings) 
+    _game-->> Miinaharava:'return_to_menu'
+    Miinaharava->>_menu: _menu.run()
 ```
 

@@ -1,7 +1,6 @@
 import unittest
 import pygame
 from gameinstance import GameLogic
-import sys
 
 
 class TestMiinaharava(unittest.TestCase):
@@ -15,6 +14,12 @@ class TestMiinaharava(unittest.TestCase):
         self._game.apply_settings(['', ''])
         self.assertEqual(self._game.gridsize, 10)
         self.assertEqual(self._game.mineamount, 20)
+    
+    def test_starts_with_invalid_settings(self):
+        self._game.apply_settings([999, 999])
+        self.assertEqual(self._game.gridsize, 20)
+        self.assertEqual(self._game.mineamount, 200)
+
 
     def test_creates_grid_correctly(self):
         self._game.gridsize = 5
@@ -42,6 +47,15 @@ class TestMiinaharava(unittest.TestCase):
                 if j[0] == 'M':
                     in_grid += 1
         self.assertEqual(self._game.mineamount, in_grid)
+    
+    def test_sets_mines_if_not_in_progress(self):
+        self._game.gridsize = 5
+        self._game.mineamount = 10
+        self._game.minefield = self._game.create_grid()
+        self._game.in_progress = False
+        self._game.reveal_square(0, 0)
+
+
 
     def test_opening_square_sets_square_open(self):
         self._game.gridsize = 1
@@ -53,6 +67,17 @@ class TestMiinaharava(unittest.TestCase):
         self._game.reveal_square(0, 0)
 
         self.assertEqual(self._game.user_interface[2], 10)
+    
+    def test_cant_open_open_square(self):
+        self._game.gridsize = 1
+        self._game.in_progress = True
+        self._game.minefield = [[['0', 'open']]]
+        self._game.window = pygame.display.set_mode(
+            (1000, 1000)
+        )
+        self._game.reveal_square(0, 0)
+
+        self.assertEqual(self._game.user_interface[2], 0)
    
    
     def test_opening_mine_ends_game(self):
@@ -61,7 +86,7 @@ class TestMiinaharava(unittest.TestCase):
         self._game.minefield = [[['M', 'closed']]]
         self._game.reveal_square(0, 0)
 
-        self.assertEqual(self._game.running, False)
+        self.assertEqual(self._game.game_state, 'over')
     
 
     def test_end_gives_flagging_bonus(self):
@@ -79,11 +104,37 @@ class TestMiinaharava(unittest.TestCase):
         self._game.set_flag(0, 0)
 
         self.assertEqual(self._game.minefield, [[['M', 'flagged']]])
-
     
-    """
-    def test_game_runs_without_settings(self):
-        self._game.run(['', ''])    #gets stuck running game 
-        self.assertEqual(self._game.mineamount, 20)
-    """
+    def test_can_remove_flags(self):
+        self._game.gridsize = 1
+        self._game.in_progress = True
+        self._game.minefield = [[['M', 'flagged']]]
+        self._game.set_flag(0, 0)
 
+        self.assertEqual(self._game.minefield, [[['M', 'closed']]])
+
+    def test_does_not_flag_outside_grid(self):
+        self._game.gridsize = 1
+        self._game.in_progress = True
+        self._game.minefield = [[['0', 'closed']]]
+        self._game.set_flag(0, 1)
+
+        self.assertEqual(self._game.minefield, [[['0', 'closed']]])
+
+    def test_does_not_flag_open(self):
+        self._game.gridsize = 1
+        self._game.in_progress = True
+        self._game.minefield = [[['0', 'open']]]
+        self._game.set_flag(0, 0)
+
+        self.assertEqual(self._game.minefield, [[['0', 'open']]])
+
+    def test_game_gives_win_bonus(self):
+        self._game.gridsize = 1
+        self._game.in_progress = True
+        self._game.mineamount = 0
+        self._game.left = 1
+        self._game.minefield = [[['0', 'closed']]]
+        self._game.reveal_square(0, 0)
+
+        self.assertEqual(self._game.user_interface[2], 1010)

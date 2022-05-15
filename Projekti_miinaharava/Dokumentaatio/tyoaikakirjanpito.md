@@ -12,4 +12,5 @@
 | 30.4  | 3      | Lisätty liputtaminen             |
 | 2.5   | 4      | Lisätty docstring                |
 | 3.5   | 2      | Release 2 viimeistely            |
-| yht   | 41     |  |
+| 14.5  | 3      | Loppupalautuksen viimeistely     |
+| yht   | 44     |  |

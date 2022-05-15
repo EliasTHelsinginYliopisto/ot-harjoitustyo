@@ -13,7 +13,7 @@ class DefineColours():
 
 class GameTheme():
     """Luokka joka määrittää värit ja fontit peliä varten
-    
+
     Attributes:
         define: teeman värit"""
 

@@ -1,6 +1,8 @@
 from random import randint
+import sys
 import pygame
 from themes import GameTheme
+
 
 
 class GameLogic:
@@ -22,15 +24,17 @@ class GameLogic:
             theme:
                 Sovelluksen värit ja fontit
             minefield:
-                lista johon talletetaan miinakentän tiedot. 
+                lista johon talletetaan miinakentän tiedot.
                 muotoa [[[0, 1]]] missä 0 = luukun sisältämä tieto
                 ja 1 = luukun tila. 'closed', 'open' tai 'flagged'
             left:
                 kentällä olevien aukaisemattomien luukkujen määrä
-            in_progress:
-                boolean muuttuja joka pitää muistissa on ko peliu käynnissä
-            runing:
-                boolean muuttuja joka pitää muistissa onko peli päättynyt
+
+            game_state:
+                muuttuja joka pitää muistissa missä vaiheessa peli on
+                not started = peli ei ole alkanut
+                started = peli on käynnissä
+                over = peli päättynyt
             """
 
     def __init__(self):
@@ -50,9 +54,7 @@ class GameLogic:
 
         self.left = 0
 
-        self.in_progress = False
-
-        self.running = False
+        self.game_state = 'none'
 
     def run(self, settings):
         """Suorittaa peliä annetuilla asetuksilla
@@ -75,7 +77,7 @@ class GameLogic:
         self.window.fill(self._theme.background_colour)
         self.display_grid()
 
-        self.running = True
+        self.game_state = 'not started'
 
         while True:
             self.update_ui()
@@ -100,22 +102,23 @@ class GameLogic:
 
     def events(self):
         """Lukee annetut syötteet
-        
+
         returns:
             "return_to_menu" jos painetaan askelpalautinta
         """
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
-                self.running = False
+                self.game_state = 'over'
                 pygame.quit()
+                sys.exit()
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
-                    self.in_progress = False
+                    self.game_state = 'over'
                     return 'return_to_menu'
 
-            if event.type == pygame.MOUSEBUTTONDOWN and self.running:
+            if event.type == pygame.MOUSEBUTTONDOWN and self.game_state != 'over':
                 mouse_pos = pygame.mouse.get_pos()
                 line = mouse_pos[0] // 30
                 row = (mouse_pos[1]-60) // 30
@@ -123,6 +126,7 @@ class GameLogic:
                     self.reveal_square(line, row)
                 elif event.button == 3:
                     self.set_flag(line, row)
+        return 'continue'
 
     def set_flag(self, line, row):
         """Asettaa, tai poistaa lipun miinakenttään
@@ -155,17 +159,15 @@ class GameLogic:
 
     def reveal_square(self, line, row):
         """Avaa luukun valituista koordinaateista. jos yhtään luukkua
-        ei ole vielä avattu, luodaan miinakenttä. jos luukkuja on
-        enää sama määrä kuin miinoja, lopetetaan peli ja annetaan bonus.
-        jos osutaan miinaan, peli päättyy.
+        ei ole vielä avattu, luodaan miinakenttä.
         """
 
         if line < 0 or line >= self.gridsize or row < 0 or row >= self.gridsize:
             return
         if self.minefield[row][line][1] != 'closed':
             return
-        if not self.in_progress:
-            self.in_progress = True
+        if self.game_state == 'not started':
+            self.game_state = 'started'
             self.set_mines([line, row])
 
         pygame.draw.rect(
@@ -175,6 +177,15 @@ class GameLogic:
         self.left -= 1
 
         self.user_interface[2] += 10
+
+        self.check_contents(line, row)
+
+    def check_contents(self, line, row):
+        """tarkistetaan luukun sisältö. luukku jonka arvo on 0 avaa
+        vierekkäiset luukut. jos luukkuja on enää sama määrä kuin miinoja,
+        lopetetaan peli ja annetaan bonus.
+        jos osutaan miinaan, peli päättyy.
+        """
 
         content = self.minefield[line][row][0]
 
@@ -205,19 +216,27 @@ class GameLogic:
         """Lopettaa pelin. jokaisesta liputetusta miinasta tulee 100 pisteen bonus.
         jos miinoja on jäljellä, niiden sijainnit paljastetaan.
         """
-    
-        self.running = False
+
+        self.game_state = 'over'
 
         for i in range(self.gridsize):
             for j in range(self.gridsize):
                 if self.minefield[i][j][0] == 'M':
-                    if self.minefield[j][i][1] == 'flagged':
-                        self.user_interface[2] += 100
-                    else:
-                        text = self._theme.mines_font.render(
-                            str('M'), True, self._theme.text_colour
-                        )
-                        self.window.blit(text, (5+i*30, 65+j*30))
+                    self.reveal_mine(i, j)
+
+    def reveal_mine(self, i, j):
+        """Piirtää miinan näytölle. jos miina on liputettu
+        sitä ei piirretä, ja annetaan bonus
+        """
+        if self.minefield[j][i][1] == 'flagged':
+            self.user_interface[2] += 100
+        else:
+            text = self._theme.mines_font.render(
+                str('M'), True, self._theme.text_colour
+            )
+            self.window.blit(text, (5+i*30, 65+j*30))
+
+
 
     def set_mines(self, start):
         """Asettaa miinat satunnaisesti siten että aloitusruudun
@@ -231,7 +250,7 @@ class GameLogic:
         start_protection = [start-width-1, start-width, start-width+1, start-1,
                             start, start+1, start+width-1, start+width, start+width+1]
         for spot in start_protection:
-            if 0 <= spot <= spots:
+            if 0 <= spot <= spots-1:
                 places.remove(spot)
         spots = spots-10
 
@@ -243,19 +262,26 @@ class GameLogic:
             p_y = spot // width
             p_x = spot % width
             self.minefield[p_y][p_x][0] = 'M'
-
-            increase_heat = [
-                [p_x-1, p_y-1], [p_x-1, p_y], [p_x-1, p_y+1],
-                [p_x, p_y-1], [p_x, p_y+1],
-                [p_x+1, p_y-1], [p_x+1, p_y], [p_x+1, p_y+1]
-            ]
-            for spot in increase_heat:
-                if spot[0] >= 0 and spot[0] < width and spot[1] >= 0 and spot[1] < width:
-                    if self.minefield[spot[1]][spot[0]][0] != "M":
-                        self.minefield[spot[1]][spot[0]][0] += 1
+            self.increase_heat(p_y, p_x)
 
             spots = spots-1
             i += 1
+
+    def increase_heat(self, p_y, p_x):
+        """Kasvattaa miinan viereisten luukkujen numeroa"""
+
+        width = self.gridsize
+
+        increase_heat = [
+            [p_x-1, p_y-1], [p_x-1, p_y], [p_x-1, p_y+1],
+            [p_x, p_y-1], [p_x, p_y+1],
+            [p_x+1, p_y-1], [p_x+1, p_y], [p_x+1, p_y+1]
+            ]
+        for spot in increase_heat:
+            if spot[0] >= 0 and spot[0] < width and spot[1] >= 0 and spot[1] < width:
+                if self.minefield[spot[1]][spot[0]][0] != "M":
+                    self.minefield[spot[1]][spot[0]][0] += 1
+
 
     def create_grid(self):
         """Luo taulukon jonka koko on annettu leveys²
@@ -275,9 +301,10 @@ class GameLogic:
         """Päivittää näytolle self.user_interface muuttujaan
         tehdyt muutokset"""
 
-        if self.running:
+        if self.game_state != 'over':
             ui_text = self._theme.text_font.render(
-                f"""Miinoja: {self.user_interface[0]} | Liput {self.user_interface[1]}| Pisteet {self.user_interface[2]} |""",
+                f"Miinoja: {self.user_interface[0]} | "
+                f"Liput {self.user_interface[1]}| Pisteet {self.user_interface[2]} |",
                 True, self._theme.text_colour
             )
         else:
